@@ -13,8 +13,9 @@
     <context:property-placeholder location="classpath:test/cassandra.properties" />
 
     <!-- REQUIRED: The Cassandra Cluster -->
-    <cassandra:cluster contact-points="${cassandra.contactpoints}"
-                       port="${cassandra.port}" />
+    <cassandra:cluster contact-points="${cassandra.contactpoints}" port="${cassandra.port}">
+        <cassandra:socket-options connect-timeout-millis="${cassandra.readTimeout}"/>
+    </cassandra:cluster>
 
     <!-- REQUIRED: The Cassandra Session, built from the Cluster, and attaching
       to a keyspace -->
